@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Log
 
 # Create your views here.
@@ -32,3 +32,10 @@ class LogCreate(CreateView):
     model = Log
     fields = '__all__'
     
+class LogUpdate(UpdateView):
+    model = Log
+    fields = ['status', 'notes']
+
+class LogDelete(DeleteView):
+    model = Log
+    success_url = '/logs/'
