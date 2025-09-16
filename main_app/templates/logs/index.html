@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
 <link
   rel="stylesheet"
-  href="{% static 'css/logs/book-index.css' %}"
+  href="{% static 'css/logs/log-index.css' %}"
 />
 {% endblock %} {% block content %}
 
@@ -26,8 +26,9 @@
 </section>
 
 <section class="card-container">
-  {% for book in logs %}
+  {% for log in logs %}
   <div class="card">
+    <a href='{% url 'log-detail' log.id %}'>
     <div class="card-content">
       <div class="card-img-container">
         <img
@@ -35,12 +36,13 @@
           alt="A skater boy cat"
         />
       </div>
-      <h2 class="card-title">{{ book.title }}</h2>
-      <p>by {{ book.author }}</p>
-      <p>{{ book.type }}</p>
-      <p>Status: {{ book.status }}</p>
-      <p><small>{{ book.notes }}</small></p>
+      <h2 class="card-title">{{ log.title }}</h2>
+      <p>by {{ log.author }}</p>
+      <p>{{ log.type }}</p>
+      <p>Status: {{ log.status }}</p>
+      <p><small>{{ log.notes }}</small></p>
     </div>
+    </a>
   </div>
   {% endfor %}
 </section>

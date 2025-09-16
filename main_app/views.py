@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from .models import Book
+from django.views.generic.edit import CreateView
+from .models import Log
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
 
-# class Book:
+# class Log:
 #     def __init__(self, title, author, type, status, notes):
 #         self.title = title
 #         self.author = author
@@ -14,11 +15,20 @@ def home(request):
 #         self.notes = notes
 
 # logs = [
-#     Book('Handmaids Tale', 'M. Atwood', 'Audiobook', 'Complete', 'Wild ride- lots of anxieety!'),
-#     Book('The Sorcerers Stone', 'J.K. Rowling', 'Hardcover', 'Complete', 'Harry Potter Book 1- 5/5 reviews, reread several times!'),
-#     Book('Ecstasia', 'Francesca Lia Block', 'Paperback', 'Complete', 'Fantasy Fiction retelling of the Odyssey- beautiful and feminine.')
+#     Log('Handmaids Tale', 'M. Atwood', 'AudioLog', 'Complete', 'Wild ride- lots of anxieety!'),
+#     Log('The Sorcerers Stone', 'J.K. Rowling', 'Hardcover', 'Complete', 'Harry Potter Log 1- 5/5 reviews, reread several times!'),
+#     Log('Ecstasia', 'Francesca Lia Block', 'Paperback', 'Complete', 'Fantasy Fiction retelling of the Odyssey- beautiful and feminine.')
 # ]
 
 def log_index(request):
-    logs = Book.objects.all()
+    logs = Log.objects.all()
     return render(request, 'logs/index.html', {'logs': logs})
+
+def log_detail(request, log_id):
+    log = Log.objects.get(id=log_id)
+    return render(request, 'logs/detail.html', {'log': log})
+
+class LogCreate(CreateView):
+    model = Log
+    fields = '__all__'
+    
