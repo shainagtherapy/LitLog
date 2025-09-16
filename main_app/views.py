@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse('<h1>Hello BOOKTOK!</h1>')
+    return render(request, 'home.html')
 
 class Book:
     def __init__(self, title, author, type, status, notes):
