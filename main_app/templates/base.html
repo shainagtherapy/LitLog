@@ -23,6 +23,7 @@
       <nav>
         <ul>
         {% if user.is_authenticated %}
+          <li><a href="{% url 'profile-detail' %}">Profile</a></li>
           <li><a href="{% url 'log-index' %}">All Logs</a></li>
           <li><a href="{% url 'log-create' %}">Add Log</a></li>
           <li> <form id="logout-form" method="post" action ="{% url 'logout' %}">
