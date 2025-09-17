@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views 
+from .views import profile
 # Import views to connect routes to view functions
 
 urlpatterns = [
@@ -10,4 +11,5 @@ urlpatterns = [
     path('logs/<int:pk>/update/', views.LogUpdate.as_view(), name='log-update'),
     path('logs/<int:pk>/delete', views.LogDelete.as_view(), name='log-delete'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('profile/', profile, name='users-profile')
 ]
