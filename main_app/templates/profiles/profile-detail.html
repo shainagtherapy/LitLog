@@ -1,0 +1,25 @@
+{% extends "users/base.html" %}
+{% block title %}Profile Page{% endblock title %}
+{% block content %}
+    <section class="page-header">
+    <h1>{{ profile.user.username }}</h1>
+  </section>
+
+  <section>
+    {% if profile.location %}<p><strong>Location:</strong> {{ profile.location }}</p>{% endif %}
+    {% if profile.birthday %}<p><strong>Birthday:</strong> {{ profile.birthday }}</p>{% endif %}
+    {% if profile.favorites %}<p><strong>Favorites:</strong><br>{{ profile.favorites|linebreaksbr }}</p>{% endif %}
+  </section>
+
+  <p><a class="btn" href="{% url 'profile-edit' %}">Edit Profile</a></p>
+{% endblock %}
+
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Edit Your Profile</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Save</button>
+  </form>
+{% endblock %}

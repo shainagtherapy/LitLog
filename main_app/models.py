@@ -17,25 +17,28 @@ STATUS = (
 )
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True) # primary_key=True    or    unique=True
 
-    location = models.CharField(max_length=100)
-    birthday = models.DateField('Birthday')
-    favorites = models.TextField(max_length=250)
+    location = models.CharField(max_length=100, blank=True)
+    birthday = models.DateField('Birthday', blank=True, null=True)
+    favorites = models.TextField(max_length=250, blank=True)
 
     def __str__(self):
         return self.user.username
+    
+    def get_absolute_url(self):
+        return reverse('profile-detail')
 
 # Create your models here.
 class Log(models.Model):
-    cover = models.ImageField()
+    cover = models.ImageField(blank=True, null=True)
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
-    
+
     type = models.CharField(max_length=250, choices=TYPE)
     status = models.CharField(max_length=250, choices=STATUS)
-    notes = models.TextField(max_length=500)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    notes = models.TextField(max_length=500, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

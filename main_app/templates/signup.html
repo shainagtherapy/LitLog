@@ -14,7 +14,9 @@
 <form action="" method="post" class="form-container" autocomplete="off">
   {% csrf_token %}
   <table>
-    {{ form.as_table }}
+    {% comment %} user signup form: {% endcomment %}
+    {{ form.as_table }} 
+
   </table>
   <button type="submit" class="btn submit">Submit!</button>
 </form>

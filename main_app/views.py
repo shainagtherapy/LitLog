@@ -1,14 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+
 from .models import Log, Profile
+from .forms import ProfileForm
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+User = get_user_model()
 
 # Create your views here.
 class Home(LoginView):
@@ -23,6 +28,24 @@ def log_index(request):
 def log_detail(request, log_id):
     log = Log.objects.get(id=log_id) #safety alternate:    log = get_object_or_404(Log, id=log_id, user=request.user)
     return render(request, 'logs/detail.html', {'log': log})
+
+#----- PROFILE VIEWS -----
+@login_required
+def profile_detail(request):
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+    return render(request, "profiles/profile_detail.html", { "profile": profile })
+
+def profile_edit(request):
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile-detail')
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'profiles/profile_form.html', {'form': form})
+    
 
 
 class LogCreate(LoginRequiredMixin, CreateView):
@@ -64,12 +87,3 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
 
-@login_required
-def profile(request):
-    return render(request, 'users/profile.html')
-
-# class ProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ['location', 'birthday', 'favorites']
-#         widgets = { 'birthday: forms.DateInput(attrs={'type': 'date }) }
