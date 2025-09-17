@@ -33,7 +33,7 @@ def log_detail(request, log_id):
 @login_required
 def profile_detail(request):
     profile, _ = Profile.objects.get_or_create(user=request.user)
-    return render(request, "profiles/profile-detail.html", { "profile": profile })
+    return render(request, "profiles/profile_detail.html", { "profile": profile })
 
 def profile_edit(request):
     profile, _ = Profile.objects.get_or_create(user=request.user)
