@@ -141,14 +141,14 @@ def audiobook_save(request):
         return redirect("audiobook-search")
     title = request.POST.get("title", "").strip()
     author = request.POST.get("author", "").strip()
-    # NOTE: Your Log.cover is an ImageField; storing a remote URL there needs a download.
+    # Your Log.cover is an ImageField; storing a remote URL there needs a download.
     # For now we’ll ignore cover, and you can add a URL field later (see note below).
     if not title:
         messages.error(request, "Missing title.")
         return redirect("audiobook-search")
     Log.objects.create(
         user=request.user,
-        title=title,
+        name=title,
         author=author,
         type="audiobook",
         status="currently reading",

@@ -34,11 +34,12 @@
     <div class="card-content">
       <div class="card-img-container">
         <img
-          src="{% static 'images/sk8r-boi-cat.svg' %}"
+          src="{{ log.cover_url }}"
           alt="A skater boy cat"
         />
       </div>
-      <h2 class="card-title">{{ log.title }}</h2>
+      <p>{{ log.cover_url }}</p>
+      <h2 class="card-title">{{ log.name }}</h2>
       <p>by {{ log.author }}</p>
       <p>{{ log.type }}</p>
       <p>Status: {{ log.status }}</p>
