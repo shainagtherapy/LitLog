@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Audiobook Search (Spotify)</h1>
+
+  <form method="get" action="{% url 'audiobook-search' %}">
+    <input type="text" name="q" value="{{ q }}" placeholder="Search title or author" required>
+    <button type="submit">Search</button>
+  </form>
+
+  {% if results %}
+    <ul class="card-container">
+      {% for b in results %}
+        <li class="card" style="list-style:none; margin:1rem 0; padding:1rem;">
+          {% if b.image_url %}
+            <img src="{{ b.image_url }}" alt="{{ b.title }}" style="max-width:140px; display:block;">
+          {% endif %}
+          <h3>{{ b.title }}</h3>
+          <p><em>{{ b.author }}</em></p>
+          <form method="post" action="{% url 'audiobook-save' %}">
+            {% csrf_token %}
+            <input type="hidden" name="title" value="{{ b.title }}">
+            <input type="hidden" name="author" value="{{ b.author }}">
+            <button type="submit">Save to My Logs</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% elif q %}
+    <p>No results found.</p>
+  {% endif %}
+{% endblock %}

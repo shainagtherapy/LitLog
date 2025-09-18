@@ -13,4 +13,8 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     path('profile/', views.profile_detail, name='profile-detail'),
     path('profile/edit/', views.profile_edit, name='profile-edit'),
+
+    # Spotify API:
+    path('audiobooks/search/', views.audiobook_search, name='audiobook-search'),
+    path('audiobooks/save/', views.audiobook_save, name='audiobook-save'),
 ]
