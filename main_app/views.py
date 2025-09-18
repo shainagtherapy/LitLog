@@ -139,6 +139,7 @@ def audiobook_search(request):
 def audiobook_save(request):
     if request.method != "POST":
         return redirect("audiobook-search")
+    image_url = (request.POST.get("image_url") or "").strip()
     title = request.POST.get("title", "").strip()
     author = request.POST.get("author", "").strip()
     # Your Log.cover is an ImageField; storing a remote URL there needs a download.
@@ -148,7 +149,8 @@ def audiobook_save(request):
         return redirect("audiobook-search")
     Log.objects.create(
         user=request.user,
-        name=title,
+        image_url=image_url,
+        title=title,
         author=author,
         type="audiobook",
         status="currently reading",

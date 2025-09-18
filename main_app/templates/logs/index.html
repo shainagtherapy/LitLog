@@ -33,13 +33,14 @@
     <a href='{% url 'log-detail' log.id %}'>
     <div class="card-content">
       <div class="card-img-container">
+        <p style="font-size:12px;color:#666;">DEBUG cover_url: {{ log.image_url }}</p>
         <img
-          src="{{ log.cover_url }}"
+          src="{{ log.image_url }}"
           alt="A skater boy cat"
         />
       </div>
-      <p>{{ log.cover_url }}</p>
-      <h2 class="card-title">{{ log.name }}</h2>
+      {% comment %} <p>{{ log.cover_url }}</p> {% endcomment %}
+      <h2 class="card-title">{{ log.title }}</h2>
       <p>by {{ log.author }}</p>
       <p>{{ log.type }}</p>
       <p>Status: {{ log.status }}</p>

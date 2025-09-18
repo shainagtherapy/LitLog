@@ -31,11 +31,8 @@ class Profile(models.Model):
 
 # Create your models here.
 class Log(models.Model): #Spotify Audiobook requirements
-#    images = models.ImageField(blank=True, null=True)
-
-    # models.py
-    cover_url = models.URLField(blank=True, null=True)
-    name = models.CharField(max_length=100)
+    image_url = models.URLField(blank=True, null=True)
+    title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
 
     type = models.CharField(max_length=250, choices=TYPE)

@@ -20,6 +20,7 @@
             {% csrf_token %}
             <input type="hidden" name="title" value="{{ b.title }}">
             <input type="hidden" name="author" value="{{ b.author }}">
+            <input type="hidden" name="image_url" value="{{ b.image_url }}">
             <button type="submit">Save to My Logs</button>
           </form>
         </li>
