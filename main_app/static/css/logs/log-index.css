@@ -5,8 +5,17 @@
   flex-wrap: wrap;
 }
 .card-img-container{
-  align-items: center;
   width: 250px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .card {

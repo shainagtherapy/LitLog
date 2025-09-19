@@ -1,5 +1,5 @@
 # API coding:
-import os, time, base64
+import os, time, base64, requests #                             ********* error on Heroku with 'requests' undefined
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -78,7 +78,7 @@ def _spotify_search_audiobooks(q, market="US", limit=10):
     headers = {"Authorization": f"Bearer {token}"}
     params = {"q": q, "type": "audiobook", "market": market, "limit": limit}
 
-    r = requests.get(url, headers=headers, params=params, timeout=10)
+    r = requests.get(url, headers=headers, params=params, timeout=10)       # *********** requests error on Heroku
     r.raise_for_status()
     data = r.json()
     items = (data.get("audiobooks") or {}).get("items", [])
@@ -87,47 +87,11 @@ def _spotify_search_audiobooks(q, market="US", limit=10):
         title = it.get("name")
         authors = ", ".join(a.get("name") for a in it.get("authors", []))
         images = it.get("images") or []
-        image_url = images[0]["url"] if images else None
+        image_url = images[-1]["url"] if images else None
         results.append({"title": title, "author": authors, "image_url": image_url})
     return results
 
-
-    # if q:
-    #     try:
-    #         token = _get_spotify_token()
-    #         resp = requests.get(
-    #             "https://api.spotify.com/v1/search",
-    #             headers={"Authorization": f"Bearer {token}"},
-    #             params={"q": q, "type": "audiobook", "market": "US", "limit": 12},
-    #             timeout=10,
-    #         )
-    #         data = resp.json()  # Spotify always returns JSON on this endpoint
-
-    #         if resp.status_code != 200:
-    #             # Surface Spotify’s message in your template
-    #             error_message = data.get("error", {}).get("message", "Unexpected error from Spotify.")
-    #         else:
-    #             items = (data.get("audiobooks") or {}).get("items", [])
-    #             for b in items:
-    #                 results.append({
-    #                     "id": b.get("id"),
-    #                     "title": b.get("name"),
-    #                     # authors is a list of {name: "..."}
-    #                     "author": ", ".join([a.get("name") for a in b.get("authors", [])]) or b.get("publisher", ""),
-    #                     "image": (b.get("images") or [{}])[0].get("url"),
-    #                     "external_url": (b.get("external_urls") or {}).get("spotify"),
-    #                     "uri": b.get("uri"),
-    #                 })
-    #     except Exception as e:
-    #         error_message = str(e)
-
-    # return render(request, "audiobook-search", {
-    #     "query": q,
-    #     "results": results,
-    #     "error_message": error_message,
-    # })
-
-# ********************* Spotify Views for Audiobook Search & Saving ********************
+# *********** Spotify Views for Audiobook Search & Saving ***********
 @login_required
 def audiobook_search(request):
     q = request.GET.get("q", "").strip()
@@ -158,7 +122,6 @@ def audiobook_save(request):
     )
     messages.success(request, f"Saved “{title}”.")
     return redirect("log-update", pk=log.pk)
-
 
 
 
