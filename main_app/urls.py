@@ -17,6 +17,8 @@ urlpatterns = [
     # Spotify API:
     path('audiobooks/search/', views.audiobook_search, name='audiobook-search'),
     path('audiobooks/save/', views.audiobook_save, name='audiobook-save'),
+    path('podcasts/search/', views.podcast_search, name='podcast-search'),
+    path('podcasts/save/', views.podcast_save, name='podcast-save'),
 
     # Google Books API:
     path('books/search/', views.book_search, name='book-search'),

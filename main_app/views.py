@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
-from .services.spotify import _spotify_search_audiobooks
+from .services.spotify import _spotify_search_audiobooks, _spotify_search_podcasts
 from .services.google_books import googlebooks_search
 
 
@@ -123,6 +123,33 @@ def audiobook_save(request):
         notes="Imported from Spotify search",
     )
     messages.success(request, f"Saved “{title}”.")
+    return redirect("log-update", pk=log.pk)
+
+def podcast_search(request):
+    q = request.GET.get("q", "").strip()
+    results = _spotify_search_podcasts(q) if q else []
+    return render(request, "logs/podcast_search.html", {"q": q, "results": results})
+
+def podcast_save(request):
+    if request.method != "POST":
+        return redirect("podcast-search")
+    title = (request.POST.get("title") or "").strip()
+    author = (request.POST.get("author") or "").strip()
+    image_url = (request.POST.get("image_url") or "").strip()
+    if not title:
+        messages.error(request, "Missing title.")
+        return redirect("podcast-search")
+    
+    log = Log.objects.create(
+        user=request.user,
+        image_url=image_url,               # URLField on your model
+        title=title,
+        author=author,
+        type="podcast",                    # <-- key change vs audiobooks
+        status="currently reading",        # default; user can edit next
+        notes="Imported from Spotify podcast search",
+    )
+    messages.info(request, "Now choose type/status and add notes.")
     return redirect("log-update", pk=log.pk)
 
 # ***************** GOOGLE Book API *****************

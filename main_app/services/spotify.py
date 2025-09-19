@@ -53,6 +53,24 @@ def _spotify_search_audiobooks(q, market="US", limit=10):
         title = it.get("name")
         authors = ", ".join(a.get("name") for a in it.get("authors", []))
         images = it.get("images") or []
-        image_url = images[-1]["url"] if images else None
+        image_url = images[0]["url"] if images else None
         results.append({"title": title, "author": authors, "image_url": image_url})
+    return results
+
+def _spotify_search_podcasts(q, market="US", limit=10):
+    token = _get_spotify_token()  # you already have this
+    url = "https://api.spotify.com/v1/search"
+    headers = {"Authorization": f"Bearer {token}"}
+    params = {"q": q, "type": "show", "market": market, "limit": limit}
+    r = requests.get(url, headers=headers, params=params, timeout=10)
+    r.raise_for_status()
+    data = r.json()
+    items = (data.get("shows") or {}).get("items", [])
+    results = []
+    for it in items:
+        title = it.get("name")                 # show title
+        author = it.get("publisher") or ""     # treat publisher as "author"
+        images = it.get("images") or ""
+        image_url = images[0]["url"] if images else None
+        results.append({"title": title, "author": author, "image_url": image_url, "id": it.get("id")})
     return results
