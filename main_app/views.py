@@ -1,5 +1,5 @@
 # API coding:
-import os, time, base64, requests
+import os, time, base64
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
