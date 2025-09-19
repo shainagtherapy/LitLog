@@ -15,7 +15,7 @@ def googlebooks_search(q: str, max_results: int =10):
         "printType": "books",
         "orderBy": "relevance",
         "maxResults": max_results,
-        "fields": "items(volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks/thumnail)",
+        "fields": "items(volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks/thumbnail)",
         "key": GOOGLE_BOOKS_API_KEY,
     }
     r = requests.get(url, params=params, timeout=10)

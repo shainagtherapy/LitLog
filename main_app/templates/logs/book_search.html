@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Find Books (Google Books)</h1>
+</div>
+
+<form class="search-bar" action="{% url 'book-search' %}" method="get" autocomplete="off">
+  <label for="q" class="sr-only">Search by title, author, or ISBN</label>
+  <input id="q" name="q" type="text" value="{{ q }}" placeholder="Title, author, or ISBN" required>
+  <button type="submit" class="btn submit">Search</button>
+</form>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if q and not results %}
+  <p>No results for “{{ q }}”. Try another search term (e.g., <code>intitle:1984</code>, <code>inauthor:Atwood</code>, <code>isbn:9780143127741</code>).</p>
+{% endif %}
+
+<div class="card-container">
+  {% for r in results %}
+    <div class="card">
+      <div class="card-content">
+        {% if r.image_url %}
+          <img class="usr-img" src="{{ r.image_url }}" alt="Cover of {{ r.title }}">
+        {% else %}
+          <div class="usr-img placeholder" aria-label="No cover available">No cover</div>
+        {% endif %}
+
+        <h2>{{ r.title }}</h2>
+        <p class="muted">{{ r.author }}</p>
+
+        <form action="{% url 'book-save' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="title" value="{{ r.title }}">
+          <input type="hidden" name="author" value="{{ r.author }}">
+          <input type="hidden" name="image_url" value="{{ r.image_url }}">
+          <button type="submit" class="btn">Save to Log</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
