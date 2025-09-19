@@ -4,6 +4,10 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+.card-img-container{
+  align-items: center;
+  width: 250px;
+}
 
 .card {
   width: 275px;

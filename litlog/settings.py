@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,12 +31,13 @@ SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!5kc(-xyn50ualh14^an5i@b$n#^o^ry1pb%2sa)32+w@9q88&'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if not 'ON_HEROKU' in os.environ:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # star added for deploy
 
 
 # Application definition
@@ -49,6 +54,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    "whitenoise.middleware.WhiteNoiseMiddleware", #deploy addon
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,10 +89,24 @@ WSGI_APPLICATION = 'litlog.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'litlog',
-    }
+
+    if 'ON_HEROKU' in os.environ:
+        DATABASES = {
+            "default": dj_database_url.config(
+                env='DATABASE_URL',
+                conn_max_age=600,
+                conn_health_checks=True,
+                ssl_require=True,
+            ),
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'litlog',
+                # The value of 'NAME' should match the value of 'NAME' you replaced.
+            }
+        }
 }
 
 
@@ -122,7 +144,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/' 
+STATIC_ROOT = BASE_DIR / "staticfiles" #deploy addon
 
 LOGIN_URL = 'home'
 

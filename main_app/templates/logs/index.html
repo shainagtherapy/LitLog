@@ -8,23 +8,8 @@
 {% endblock %} {% block content %}
 
 <section class="page-header">
-  <h1>Cat List</h1>
-  <img
-    src="{% static 'images/cool-cat.svg' %}"
-    alt="A cool cat"
-  />
-  <img
-    src="{% static 'images/happy-cat.svg' %}"
-    alt="A happy cat"
-  />
-  <img
-    src="{% static 'images/teacup-cat.svg' %}"
-    alt="A cat in a teacup"
-  />
-  <img
-    src="{% static 'images/cat-in-box.svg' %}"
-    alt="A cat in a box"
-  />
+  <h1>Book Log Index</h1>
+
 </section>
 
 <section class="card-container">
@@ -33,15 +18,15 @@
     <a href='{% url 'log-detail' log.id %}'>
     <div class="card-content">
       <div class="card-img-container">
-        <p style="font-size:12px;color:#666;">DEBUG cover_url: {{ log.image_url }}</p>
+        
         <img
           src="{{ log.image_url }}"
           alt="A skater boy cat"
         />
       </div>
-      {% comment %} <p>{{ log.cover_url }}</p> {% endcomment %}
+      
       <h2 class="card-title">{{ log.title }}</h2>
-      <p>by {{ log.author }}</p>
+      <h3>by {{ log.author }}</h3>
       <p>{{ log.type }}</p>
       <p>Status: {{ log.status }}</p>
       <p><small>{{ log.notes }}</small></p>

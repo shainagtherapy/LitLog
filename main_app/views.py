@@ -142,12 +142,12 @@ def audiobook_save(request):
     image_url = (request.POST.get("image_url") or "").strip()
     title = request.POST.get("title", "").strip()
     author = request.POST.get("author", "").strip()
-    # Your Log.cover is an ImageField; storing a remote URL there needs a download.
-    # For now we’ll ignore cover, and you can add a URL field later (see note below).
+
     if not title:
         messages.error(request, "Missing title.")
         return redirect("audiobook-search")
-    Log.objects.create(
+        
+    log = Log.objects.create(
         user=request.user,
         image_url=image_url,
         title=title,
@@ -157,7 +157,7 @@ def audiobook_save(request):
         notes="Imported from Spotify search",
     )
     messages.success(request, f"Saved “{title}”.")
-    return redirect("log-index")
+    return redirect("log-update", pk=log.pk)
 
 
 
@@ -192,7 +192,8 @@ class LogCreate(LoginRequiredMixin, CreateView):
     
 class LogUpdate(LoginRequiredMixin, UpdateView):
     model = Log
-    fields = ['status', 'notes']
+    fields = ['type', 'status', 'notes']
+    
 
     def get_queryset(self): #only allow editing on own logs
         return Log.objects.filter(user=self.request.user)
