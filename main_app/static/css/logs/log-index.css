@@ -4,6 +4,8 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+
 .card-img-container{
   width: 250px;
   aspect-ratio: 3/4;

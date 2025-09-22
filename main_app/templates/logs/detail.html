@@ -16,7 +16,7 @@
     <p>{{ log.notes }}</p>
 
     <div class="cat-actions">
-        <a href="{% url 'log-update' log.id %}" class='btn warn'>Edit</a>
+        <a href="{% url 'log-update' log.id %}" class="btn warn" data-modal-url="{% url 'log-update' log.id %}" data-modal-title="Edit Log">Edit</a>
         <a href="{% url 'log-delete' log.id %}" class='btn danger'>Delete</a>
     </div>
   </div>
