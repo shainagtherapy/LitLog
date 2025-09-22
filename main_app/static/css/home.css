@@ -23,7 +23,7 @@ main > section {
   max-width: 375px;
 }
 
-.login {
+.login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,29 +31,29 @@ main > section {
   width: 80%;
 }
 
-.login h1 {
+.login-form h1 {
   font-size: clamp(3.2rem, 3vw, 4.8rem);
   margin: 10px 0;
 }
 
-.login > p {
+.login-form > p {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 14px 0 0px;
 }
 
-.login label {
+.login-form label {
   font-size: var(--font-reg);
   margin-bottom: 6px;
 }
 
-.login input {
+.login-form input {
   font-size: var(--font-l);
   padding: 2px 4px;
 }
 
-.login .btn {
+.login-form .btn {
   align-self: flex-end;
   margin-right: 0;
   margin-top: 16px;
@@ -68,7 +68,7 @@ main > section {
     width: 40%;
   }
 
-  .login {
+  .login-form {
     border: var(--borders);
     padding: 20px;
     border-radius: var(--card-border-radius);
@@ -79,3 +79,4 @@ main > section {
     max-width: 520px;
   }
 }
+
