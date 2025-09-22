@@ -12,17 +12,18 @@
     alt="litlog home logo"
   />
 </div>
+<button id="login-button">Login</button>
 </section>
 
 {% if not user.is_authenticated %}
-<section>
+<dialog id="login-modal" class="modal">
   <form action="{% url 'home' %}" method="post" class="login-form">
     <h1>Login</h1>
     {% csrf_token %} {{ form.as_table }}
     <input type="hidden" name="next" value="{{ next }}" />
     <button type="submit" class="btn submit">Login</button>
   </form>
-</section>
+</dialog>
 {% endif %}
 
 {% endblock %}

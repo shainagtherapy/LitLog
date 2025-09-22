@@ -11,17 +11,16 @@
       type="image/png"
       href="{% static 'images/purplestar.png' %}"
     />
-    <title>LitLog</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
 
-    {% comment %} <style>
-      .modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:1000;padding:1rem}
-      .modal-backdrop.open{display:flex}
-      .modal{width:100%;max-width:620px;background:var(--card,#fff);color:var(--text,#111);border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.25);overflow:hidden}
-      .modal header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg,#f6f6f6)}
-      .modal .body{padding:16px;background:var(--bg,#fff)}
-      .modal .close-btn{border:0;background:transparent;font-size:20px;cursor:pointer}
-    </style> {% endcomment %}
+    <title>LitLog</title>
+    {% comment %} <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
+    /> {% endcomment %}
+   
+    {% comment %} <link rel="stylesheet" href="{% static 'css/base.css' %}" /> {% endcomment %}
+    
+    <script defer src="{% static 'js/modal.js' %}"></script>
 
     {% block head %} {% endblock %}
   </head>
@@ -29,10 +28,7 @@
     <header>
       <div class="header-logo-container">
         <a href="/">
-          <img
-            src="{% static 'images/Logo.png' %}"
-            alt="litlog logo"
-          />
+          <img src="{% static 'images/Logo.png' %}" alt="litlog logo" />
         </a>
       </div>
       <nav>
@@ -51,89 +47,12 @@
             </form>
           </li>
           {% else %}
-            <li><a href="{% url 'home' %}">Login</a></li>
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'home' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
           {% endif %}
         </ul>
       </nav>
     </header>
-  <main>{% block content %} {% endblock %}</main>
+    <main>{% block content %} {% endblock %}</main>
   </body>
 </html>
-{% comment %} Modal add on ******************* {% endcomment %}
-    {% comment %} <div class="modal-backdrop" id="appModal" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
-        <header>
-          <h3 id="appModalTitle" style="margin:0">Loading…</h3>
-          <button class="close-btn" data-modal-close>&times;</button>
-        </header>
-        <div class="body" id="appModalBody">
-          <!-- form content injected here -->
-        </div>
-      </div>
-    </div>
-
-    <script>
-  // --- Helpers ---
-  const $ = s => document.querySelector(s);
-  function getCookie(name){
-    const m = document.cookie.match(new RegExp('(^| )'+name+'=([^;]+)'));
-    return m ? decodeURIComponent(m[2]) : null;
-  }
-  function openModal(title){ 
-    $('#appModalTitle').textContent = title || 'Edit';
-    const mm = $('#appModal');
-    mm.classList.add('open'); mm.setAttribute('aria-hidden','false');
-  }
-  function closeModal(){ 
-    const mm = $('#appModal');
-    mm.classList.remove('open'); mm.setAttribute('aria-hidden','true');
-    $('#appModalBody').innerHTML = '';
-  }
-
-  // Click to open modal with a URL (put data-modal-url + optional data-modal-title on any button/link)
-  document.addEventListener('click', async (e) => {
-    const btn = e.target.closest('[data-modal-url]');
-    if (btn) {
-      e.preventDefault();
-      openModal(btn.getAttribute('data-modal-title') || btn.textContent.trim());
-      const url = btn.getAttribute('data-modal-url') || btn.getAttribute('href');
-      const html = await fetch(url, {credentials:'same-origin'}).then(r=>r.text());
-      // Extract the first <form> (works with your existing Django views/templates)
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      const form = doc.querySelector('form');
-      $('#appModalBody').innerHTML = form ? form.outerHTML : html;
-
-      // Wire submit handler on the injected form
-      const injectedForm = $('#appModalBody form');
-      if (injectedForm) {
-        injectedForm.addEventListener('submit', async (ev) => {
-          ev.preventDefault();
-          const action = injectedForm.getAttribute('action') || url;
-          const method = (injectedForm.getAttribute('method')||'post').toUpperCase();
-          const formData = new FormData(injectedForm);
-          const res = await fetch(action, {
-            method, body: formData, credentials:'same-origin',
-            headers: {'X-CSRFToken': getCookie('csrftoken')||''}
-          });
-
-          // If Django redirected on success, go there
-          if (res.redirected) { window.location = res.url; return; }
-
-          // Otherwise we got back a page (likely with form errors). Replace modal body with new form.
-          const text = await res.text();
-          const ndoc = new DOMParser().parseFromString(text, 'text/html');
-          const nform = ndoc.querySelector('form');
-          $('#appModalBody').innerHTML = nform ? nform.outerHTML : text;
-            }, {once:false});
-          }
-        }
-        if (e.target.matches('[data-modal-close]')) closeModal();
-        if (e.target.id === 'appModal') closeModal(); // click backdrop
-      });
-
-      // Escape closes modal
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-    </script> {% endcomment %}
-{% comment %} # ***************** Modal addition {% endcomment %}
-
