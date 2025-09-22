@@ -39,7 +39,7 @@
 <section class="shelf">
   <h2>Audiobooks</h2>
   {% for log in logs %}{% if log.type == 'audiobook' %}
-  <div class="card-container">
+
     <a href='{% url 'log-detail' log.id %}'>
     <div class="card-content">
       <div class="card-img-container">

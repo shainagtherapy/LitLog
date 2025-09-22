@@ -40,13 +40,13 @@ body {
   --warn: rgb(255, 102, 0);
   --danger: rgb(220, 20, 30);
   --secondary: rgb(57, 57, 57);
-  --card-box-shadow: 5px 5px 6px -1px #aaa;
+
   --font-xtreme: 4.2rem;
   --font-xxl: 3.6rem;
   --font-xl: 2.4rem;
   --font-l: 1.8rem;
   --font-reg: 1.6rem;
-  --card-border-radius: 6px;
+
 }
 
 header {
@@ -56,7 +56,7 @@ header {
 }
 
 nav {
-  margin: 10px;
+  margin: 0px;
 }
 
 ul {
@@ -66,7 +66,7 @@ ul {
 }
 
 main {
-  width: 100%;
+  width: 80%;
   padding: 0 10px;
 }
 
@@ -99,7 +99,7 @@ nav li {
 .header-logo-container {
   margin: auto;
   padding: 10px 20px 0;
-  max-width: 500px;
+  width: 200px;
 }
 
 .page-header {
@@ -184,10 +184,6 @@ nav li {
     padding: 0 15px;
   }
 
-  /* visual fix to help align logo */
-  .header-logo-container {
-    padding-top: 3px;
-  }
 
   nav {
     margin-left: auto;
@@ -200,7 +196,7 @@ nav li {
   }
 
   .header-logo-container {
-    width: 213px;
+    width: 200px;
   }
 
   .page-header h1 {
@@ -225,7 +221,7 @@ nav li {
   }
 }
 
-@media only screen and (min-width: 1024px) {
+/* @media only screen and (min-width: 1024px) {
   main {
     min-height: calc(100vh - 55px);
   }
@@ -252,8 +248,8 @@ nav li {
   }
 
   .header-logo-container {
-    /* visual fix to help align logo */
-    padding-top: 6px;
+    /*visual fix to help align logo */
+    /*padding-top: 6px;
     width: 256px;
     height: 35px;
   }
@@ -271,9 +267,9 @@ nav li {
       backdrop-filter: blur(3px);
     }
   }
-}
+} */
 
-logout-form button {
+#logout-form button {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 600;
