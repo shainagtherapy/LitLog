@@ -1,11 +1,9 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block head %}
-<link
-  rel="stylesheet"
-  href="{% static 'css/logs/log-index.css' %}"
-/>
-{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/logs/log-index.css' %}" />
+{% endblock %}
+{% block content %}
 
 <section class="page-header">
   <h1>Book Log Index</h1>
@@ -13,100 +11,88 @@
 
 <section class="shelf">
   <h2>Print / eBooks</h2>
-  {% for log in logs %}{% if log.type == 'print' %}
-  <div class="card-container">
-    <a href='{% url 'log-detail' log.id %}'>
-    <div class="card-content">
-      <div class="card-img-container">
-        
-        <img
-          src="{{ log.image_url }}"
-          alt="Book Cover img"
-        />
+  <div class="card-container">  {# one container wraps ALL cards in this shelf #}
+    {% for log in logs %}{% if log.type == 'print' %}
+      <div class="card">
+        <a href="{% url 'log-detail' log.id %}">
+          <div class="card-img-container">
+            <img src="{{ log.image_url }}" alt="Book Cover img">
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">{{ log.title }}</h2>
+            <h3>by {{ log.author }}</h3>
+            <p>{{ log.type }}</p>
+            <p>Status: {{ log.status }}</p>
+            <p><small>{{ log.notes }}</small></p>
+          </div>
+        </a>
       </div>
-      
-      <h2 class="card-title">{{ log.title }}</h2>
-      <h3>by {{ log.author }}</h3>
-      <p>{{ log.type }}</p>
-      <p>Status: {{ log.status }}</p>
-      <p><small>{{ log.notes }}</small></p>
-    </div>
-    </a>
+    {% endif %}{% endfor %}
   </div>
-  {% endif %}{% endfor %}
 </section>
 
 <section class="shelf">
   <h2>Audiobooks</h2>
-  {% for log in logs %}{% if log.type == 'audiobook' %}
-
-    <a href='{% url 'log-detail' log.id %}'>
-    <div class="card-content">
-      <div class="card-img-container">
-        
-        <img
-          src="{{ log.image_url }}"
-          alt="Book Cover img"
-        />
+  <div class="card-container">
+    {% for log in logs %}{% if log.type == 'audiobook' %}
+      <div class="card">
+        <a href="{% url 'log-detail' log.id %}">
+          <div class="card-img-container">
+            <img src="{{ log.image_url }}" alt="Book Cover img">
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">{{ log.title }}</h2>
+            <h3>by {{ log.author }}</h3>
+            <p>{{ log.type }}</p>
+            <p>Status: {{ log.status }}</p>
+            <p><small>{{ log.notes }}</small></p>
+          </div>
+        </a>
       </div>
-      
-      <h2 class="card-title">{{ log.title }}</h2>
-      <h3>by {{ log.author }}</h3>
-      <p>{{ log.type }}</p>
-      <p>Status: {{ log.status }}</p>
-      <p><small>{{ log.notes }}</small></p>
-    </div>
-    </a>
     {% endif %}{% endfor %}
   </div>
 </section>
 
 <section class="shelf">
   <h2>Podcasts</h2>
-  {% for log in logs %}{% if log.type == 'podcast' %}
   <div class="card-container">
-    <a href='{% url 'log-detail' log.id %}'>
-    <div class="card-content">
-      <div class="card-img-container">
-        
-        <img
-          src="{{ log.image_url }}"
-          alt="Book Cover img"
-        />
+    {% for log in logs %}{% if log.type == 'podcast' %}
+      <div class="card">
+        <a href="{% url 'log-detail' log.id %}">
+          <div class="card-img-container">
+            <img src="{{ log.image_url }}" alt="Book Cover img">
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">{{ log.title }}</h2>
+            <h3>by {{ log.author }}</h3>
+            <p>{{ log.type }}</p>
+            <p>Status: {{ log.status }}</p>
+            <p><small>{{ log.notes }}</small></p>
+          </div>
+        </a>
       </div>
-      
-      <h2 class="card-title">{{ log.title }}</h2>
-      <h3>by {{ log.author }}</h3>
-      <p>{{ log.type }}</p>
-      <p>Status: {{ log.status }}</p>
-      <p><small>{{ log.notes }}</small></p>
-    </div>
-    </a>
     {% endif %}{% endfor %}
   </div>
 </section>
 
 <section class="shelf">
   <h2>Comics & Misc</h2>
-  {% for log in logs %}{% if log.type == 'comicbook' %}
   <div class="card-container">
-    <a href='{% url 'log-detail' log.id %}'>
-    <div class="card-content">
-      <div class="card-img-container">
-        
-        <img
-          src="{{ log.image_url }}"
-          alt="Book Cover img"
-        />
+    {% for log in logs %}{% if log.type == 'comicbook' %}
+      <div class="card">
+        <a href="{% url 'log-detail' log.id %}">
+          <div class="card-img-container">
+            <img src="{{ log.image_url }}" alt="Book Cover img">
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">{{ log.title }}</h2>
+            <h3>by {{ log.author }}</h3>
+            <p>{{ log.type }}</p>
+            <p>Status: {{ log.status }}</p>
+            <p><small>{{ log.notes }}</small></p>
+          </div>
+        </a>
       </div>
-      
-      <h2 class="card-title">{{ log.title }}</h2>
-      <h3>by {{ log.author }}</h3>
-      <p>{{ log.type }}</p>
-      <p>Status: {{ log.status }}</p>
-      <p><small>{{ log.notes }}</small></p>
-    </div>
-    </a>
     {% endif %}{% endfor %}
   </div>
 </section>

@@ -8,7 +8,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0;
-  
+  justify-content: flex-start;
 }
 
 .card-container {
@@ -43,11 +43,6 @@
 .card-content {
   padding: 10px;
   width: 100%;
-}
-
-.usr-img {
-  width: 100%;
-  border-radius: var(--card-border-radius);
 }
 
 .card > a {
