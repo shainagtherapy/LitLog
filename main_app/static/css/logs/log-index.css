@@ -1,5 +1,13 @@
 .shelf {
   margin: 10px;
+  background-color: beige;
+}
+
+.card-container {
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+
 }
 
 .shelf .card-container {
@@ -11,12 +19,7 @@
   justify-content: flex-start;
 }
 
-.card-container {
-  padding: 0 30px;
-  display: flex;
-  justify-content: center;
 
-}
 
 
 .card-img-container{

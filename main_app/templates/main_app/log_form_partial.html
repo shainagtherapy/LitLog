@@ -1,0 +1,9 @@
+
+<form method="post" action="{% url 'log-update' pk=object.pk %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div style="display:flex;gap:.5rem;margin-top:.75rem;">
+    <button type="submit" class="btn submit">Save</button>
+    <button type="button" class="btn secondary" data-modal-close>Cancel</button>
+  </div>
+</form>

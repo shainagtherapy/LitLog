@@ -23,10 +23,6 @@ main > section {
   max-width: 375px;
 }
 
-.cat-container {
-  width: 80%;
-}
-
 .login {
   display: flex;
   flex-direction: column;
@@ -76,11 +72,14 @@ main > section {
     border: var(--borders);
     padding: 20px;
     border-radius: var(--card-border-radius);
-    box-shadow: var(--card-box-shadow);
     width: 100%;
   }
 
   .logo-container {
     max-width: 520px;
   }
+}
+
+form.login { 
+  display: none; 
 }

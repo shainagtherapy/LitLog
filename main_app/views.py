@@ -147,7 +147,7 @@ def podcast_save(request):
         author=author,
         type="podcast",                    # <-- key change vs audiobooks
         status="currently reading",        # default; user can edit next
-        notes="Imported from Spotify podcast search",
+        notes="Imported from Spotify podcast search.",
     )
     messages.info(request, "Now choose type/status and add notes.")
     return redirect("log-update", pk=log.pk)
@@ -176,9 +176,9 @@ def book_save(request):
         image_url=image_url,
         title=title,
         author=author,
-        type="book",
-        status="currently reading",
-        notes="Imported from Google Books",
+        type="Print/eBook",
+        status="Currently reading",
+        notes="Imported from Google Books.",
     )
     messages.success(request, f"Saved “{title}”.")
     return redirect("log-update", pk=log.pk)
@@ -214,8 +214,8 @@ class LogCreate(LoginRequiredMixin, CreateView):
     
 class LogUpdate(LoginRequiredMixin, UpdateView):
     model = Log
-    fields = ['type', 'status', 'notes']
-    
+    fields = ['type', 'status', 'notes']  
+    template_name = 'main_app/log_form_partial.html'  
 
     def get_queryset(self): #only allow editing on own logs
         return Log.objects.filter(user=self.request.user)

@@ -15,7 +15,7 @@ def googlebooks_search(q: str, max_results: int =10):
         "printType": "books",
         "orderBy": "relevance",
         "maxResults": max_results,
-        "fields": "items(volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks/thumbnail)",
+        "fields": "items(volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks)",
         "key": GOOGLE_BOOKS_API_KEY,
     }
     r = requests.get(url, params=params, timeout=10)
@@ -26,9 +26,14 @@ def googlebooks_search(q: str, max_results: int =10):
         vi = it.get("volumeInfo", {}) or {}
         title = vi.get("title")
         authors = ", ".join(vi.get("authors", []))
-        thumb = (vi.get("imageLinks") or {}).get("thumbnail")
+        thumb = ((vi.get("imageLinks") or {}).get("extraLarge")
+                 or (vi.get("imageLinks") or {}).get("large")
+                 or (vi.get("imageLinks") or {}).get("medium")
+                 or (vi.get("imageLinks") or {}).get("small")
+                 or (vi.get("imageLinks") or {}).get("thumbnail")
+                 or (vi.get("imageLinks") or {}).get("smallThumbnail"))
 
         if thumb and thumb.startswith("http:"):
-            thumb = "http:" + thumb[5:]
+            thumb = "https:" + thumb[5:]
         results.append({"title": title, "author": authors, "image_url": thumb})
     return results

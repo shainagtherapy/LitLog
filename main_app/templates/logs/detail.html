@@ -4,18 +4,18 @@
 <link rel="stylesheet" href="{% static 'css/logs/log-detail.css' %}" />
 {% endblock %} 
 {% block content %}
-<section class="cat-container">
-  <div class="cat-img">
-    <img src="{{ log.image_url }}" alt="A skater boy cat" />
+<section class="card-container">
+  <div class="log-img">
+    <img src="{{ log.image_url }}" alt="Book cover" />
   </div>
-  <div class="cat-details">
+  <div class="log-details">
     <h1>{{ log.title }}</h1>
     <h2>{{ log.author }}</h2>
     <p>{{ log.type }}</p>
     <p>{{ log.status }}</p>
     <p>{{ log.notes }}</p>
 
-    <div class="cat-actions">
+    <div class="log-actions">
         <a href="{% url 'log-update' log.id %}" class="btn warn" data-modal-url="{% url 'log-update' log.id %}" data-modal-title="Edit Log">Edit</a>
         <a href="{% url 'log-delete' log.id %}" class='btn danger'>Delete</a>
     </div>
