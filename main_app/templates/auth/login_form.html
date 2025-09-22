@@ -1,9 +1,0 @@
-
-<form action="{% url 'login' %}" method="post" class="login">
-    <h1>Login</h1>
-    {% csrf_token %} 
-    {{ form.as_table }}
-    <input type="hidden" name="next" value="{{ next }}" />
-    <button type="submit" class="btn submit">Login</button>
-  </form>
-  

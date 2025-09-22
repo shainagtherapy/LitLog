@@ -14,14 +14,14 @@
     <title>LitLog</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
 
-    <style>
+    {% comment %} <style>
       .modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:1000;padding:1rem}
       .modal-backdrop.open{display:flex}
       .modal{width:100%;max-width:620px;background:var(--card,#fff);color:var(--text,#111);border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.25);overflow:hidden}
       .modal header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg,#f6f6f6)}
       .modal .body{padding:16px;background:var(--bg,#fff)}
       .modal .close-btn{border:0;background:transparent;font-size:20px;cursor:pointer}
-    </style>
+    </style> {% endcomment %}
 
     {% block head %} {% endblock %}
   </head>
@@ -51,16 +51,17 @@
             </form>
           </li>
           {% else %}
-
-          <li><a href="{% url 'login' %}" data-modal-url="{% url 'login' %}" data-modal-title="Sign in">Login</a></li>
-          <li><a href="{% url 'signup' %}" data-modal-url="{% url 'signup' %}" data-modal-title="Create account">Sign Up</a></li>
+            <li><a href="{% url 'home' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
           {% endif %}
         </ul>
       </nav>
     </header>
-    <main>{% block content %} {% endblock %}</main>
+  <main>{% block content %} {% endblock %}</main>
+  </body>
+</html>
 {% comment %} Modal add on ******************* {% endcomment %}
-    <div class="modal-backdrop" id="appModal" aria-hidden="true">
+    {% comment %} <div class="modal-backdrop" id="appModal" aria-hidden="true">
       <div class="modal" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
         <header>
           <h3 id="appModalTitle" style="margin:0">Loading…</h3>
@@ -133,7 +134,6 @@
 
       // Escape closes modal
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-    </script>
+    </script> {% endcomment %}
 {% comment %} # ***************** Modal addition {% endcomment %}
-  </body>
-</html>
+

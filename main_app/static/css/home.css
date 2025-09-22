@@ -79,7 +79,3 @@ main > section {
     max-width: 520px;
   }
 }
-
-form.login { 
-  display: none; 
-}

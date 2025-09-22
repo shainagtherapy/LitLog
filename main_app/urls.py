@@ -12,7 +12,7 @@ urlpatterns = [
     path('logs/<int:pk>/update/', views.LogUpdate.as_view(), name='log-update'),
     path('logs/<int:pk>/delete', views.LogDelete.as_view(), name='log-delete'),
     path('accounts/signup/', views.signup, name='signup'),
-    path('accounts/login/', views.LoginView.as_view(template_name="auth/login_form.html"), name='login'),
+    
     path('profile/', views.profile_detail, name='profile-detail'),
     path('profile/edit/', views.profile_edit, name='profile-edit'),
 
