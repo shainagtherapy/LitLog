@@ -11,20 +11,25 @@ Update your current reads or listens once you've finished with notes and a perso
 **Background**: This project was inspired by my own desire to organize a collaborative library of audio, print, and ebooks directly connected with my favorite apps, but all in once place!
 ![Litlog logo page](/main_app/static/images/litlogreadme2.png)
 
-[GitHub Repository](https://github.com/shainagtherapy/LitLog)
+-[Project Planning](https://trello.com/b/lDC4INaE/project-4) with Trello
 
-**Technologies used:** Django, Python, HTML, CSS, and some JavaScript.
+-[GitHub Repository](https://github.com/shainagtherapy/LitLog)
+
+**Technologies used:** Django, Python, HTML, CSS, and some JavaScript. Project deployed on Heroku.
 
 **Attributions:**
--A killer article to help with API integrations [here](https://dev.to/yahaya_hk/how-to-populate-your-database-with-data-from-an-external-api-in-django-398i), "How To Populate Your Database From An External API in Django."
+
+-Fantastic article: ["How To Populate Your Database From An External API in Django"](https://dev.to/yahaya_hk/how-to-populate-your-database-with-data-from-an-external-api-in-django-398i)
+
+-Classless styling template from [Pico](https://picocss.com/)
 
 -Logo & image design [Canva](http://canva.com)
 
 -Assistance with API integrating, debugging, and crosschecking syntax with ChatGPT
 
--API integrations for Spotify Audiobooks, Podcasts, and Google Books
+-API integrations for Spotify Audiobooks, Spotify Podcasts, and Google Books
 
--reference to GA Django-CRUD-app lectures
+-reference to General Assembly Django-CRUD-app lectures
 
 -YouTube coding videos for inspiration
 
@@ -35,4 +40,5 @@ Stretch Goals:
 * allow public viewing to see other users libraries
 * include what a user is 'currently reading' on their profile page
 * link each log entry to its source (google link or spotify track)
+* allow shelf sorting by Title, Author, date added, date completed, etc...
 ```
