@@ -22,6 +22,8 @@ Update your current reads or listens once you've finished with notes and a perso
 
 -Assistance with API integrating, debugging, and crosschecking syntax with ChatGPT
 
+-API integrations for Spotify Audiobooks, Podcasts, and Google Books
+
 -reference to GA Django-CRUD-app lectures
 
 -YouTube coding videos for inspiration
