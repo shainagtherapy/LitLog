@@ -4,11 +4,12 @@
 
 ## Visit the [LitLog app here](https://litlog-1c3282997a3b.herokuapp.com/)!
 
-Sign up to create a personal library of the trendiest books you've read. Search for books, audiobooks, and podcasts about books with integrated APIs from Spotify and Google Books to save to your shelf for tracking, adding notes, or saving for later.
+Sign up to create a personal library of the trendiest books you've read.
+Search for books, audiobooks, and podcasts about books with integrated APIs from Spotify and Google Books to save to your shelf for tracking, adding notes, and save for later.
 
-Update your current reads or listens once you've finished with notes and a personal reviews. Each entry log allows full CRUD functions to create, view, update or delete as needed.
+Update your current reads or listens with notes and a personal reviews. Each entry log allows full CRUD functionality to create, view, update or delete entries as needed.
 
-**Background**: This project was inspired by my own desire to organize a collaborative library of audio, print, and ebooks directly connected with my favorite apps, but all in once place!
+**Background**: This project was inspired by my own desire to organize a collaborative library of audio, print, and ebooks from favorite apps, but all in one place!
 ![Litlog logo page](/main_app/static/images/litlogreadme2.png)
 
 -[Project Planning](https://trello.com/b/lDC4INaE/project-4) with Trello
