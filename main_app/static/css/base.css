@@ -29,14 +29,13 @@ body {
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
   min-height: 100vh;
-  --nav-bg: rgba(104, 197, 248, 0.7);
-  --nav-bg-ff: rgba(104, 197, 248, 0.9);
-  --borders: rgb(36, 116, 248) solid 2px;
+  --nav-bg: #C2B280;
+
   --text-color: rgb(17, 20, 17);
   --link-hover-color: rgb(16, 56, 158);
   --button-bg: rgb(245, 245, 245);
   --button-bg-hover: rgb(226, 226, 226);
-  --submit: rgb(26, 128, 0);
+  --submit: #C2B280;
   --warn: rgb(255, 102, 0);
   --danger: rgb(220, 20, 30);
   --secondary: rgb(57, 57, 57);
@@ -51,7 +50,7 @@ body {
 
 header {
   width: 100%;
-  background: red;
+  background: #C2B280;
   border-bottom: var(--borders);
 }
 
@@ -69,6 +68,7 @@ main {
   width: 80%;
   padding: 0 10px;
 }
+
 
 h2 {
   font-size: var(--font-xl);
@@ -100,6 +100,12 @@ nav li {
   margin: auto;
   padding: 10px 20px 0;
   width: 200px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
 
 .page-header {
@@ -221,54 +227,6 @@ nav li {
   }
 }
 
-/* @media only screen and (min-width: 1024px) {
-  main {
-    min-height: calc(100vh - 55px);
-  }
-
-  header {
-    margin: 20px 20px 0 20px;
-    width: calc(100vw - 40px);
-    max-width: 1920px;
-    top: 20px;
-    background-color: transparent;
-    border-bottom: none;
-  }
-
-  nav,
-  .header-logo-container {
-    margin: 0;
-    background: var(--nav-bg-ff);
-    border: var(--borders);
-    border-radius: 18px;
-  }
-
-  nav {
-    margin-left: auto;
-  }
-
-  .header-logo-container {
-    /*visual fix to help align logo */
-    /*padding-top: 6px;
-    width: 256px;
-    height: 35px;
-  }
-
-  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-    header {
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-
-    nav,
-    .header-logo-container {
-      background: rgba(104, 197, 248, 0.6);
-      -webkit-backdrop-filter: blur(3px);
-      backdrop-filter: blur(3px);
-    }
-  }
-} */
-
 #logout-form button {
   text-decoration: none;
   color: var(--text-color);
@@ -285,3 +243,8 @@ nav li {
   color: var(--link-hover-color);
 }
 
+.search-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}

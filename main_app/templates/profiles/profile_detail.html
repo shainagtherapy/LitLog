@@ -2,14 +2,38 @@
 {% block title %}Profile Page{% endblock title %}
 {% block content %}
     <section class="page-header">
-    <h1>{{ profile.user.username }}</h1>
+    <h1>{{ profile.user.username }} Profile</h1>
   </section>
 
+  <div class="card-container">
   <section>
-    {% if profile.loion %}<p><strong>Loion:</strong> {{ profile.loion }}</p>{% endif %}
+    {% if profile.location %}<p><strong>Location:</strong> {{ profile.location }}</p>{% endif %}
     {% if profile.birthday %}<p><strong>Birthday:</strong> {{ profile.birthday }}</p>{% endif %}
     {% if profile.favorites %}<p><strong>Favorites:</strong><br>{{ profile.favorites|linebreaksbr }}</p>{% endif %}
   </section>
+  </div>
+
+  <div class="card-container">
+      {% for log in logs %}
+        {% if log.status == 'current' %}
+          <p>Currently consuming:</p>
+          <div class="card">
+            <a href="{% url 'log-detail' log.id %}">
+              <div class="card-img-container">
+                <img src="{{ log.image_url }}" alt="Book Cover img">
+              </div>
+              <div class="card-content">
+                <h2 class="card-title">{{ log.title }}</h2>
+                <h3>by {{ log.author }}</h3>
+          
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+  </div>
 
   <p><a class="btn" href="{% url 'profile-edit' %}">Edit Profile</a></p>
 {% endblock %}
+
+</section>

@@ -1,3 +1,10 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %} 
+{% block content %}
+
 
 <form method="post" action="{% url 'log-update' pk=object.pk %}">
   {% csrf_token %}
@@ -7,3 +14,4 @@
     <button type="button" class="btn secondary" data-modal-close>Cancel</button>
   </div>
 </form>
+{% endblock %} 

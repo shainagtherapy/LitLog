@@ -1,11 +1,14 @@
-{% extends "base.html" %}
+{% extends "base.html" %}{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/logs/base.css' %}" />
+{% endblock %}
 {% block content %}
   <h1>Audiobook Search (Spotify)</h1>
-
+  <div class="search-container">
   <form method="get" action="{% url 'audiobook-search' %}">
     <input type="text" name="q" value="{{ q }}" placeholder="Search title or author" required>
     <button type="submit">Search</button>
-  </form>
+  </form></div>
 
   {% if results %}
     <ul class="search-card-container">

@@ -1,7 +1,7 @@
 .shelf {
   width: 80%;
   margin: 16px auto;
-  background-color: beige;
+  background-color: #555555;
   padding: 12px;
   border-radius: 8px;
   min-height: 150px;
@@ -22,9 +22,6 @@
   padding: 8px;
   justify-content: flex-start;
 }
-
-
-
 
 .card-img-container{
   width: 150px;
