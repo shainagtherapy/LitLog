@@ -1,4 +1,4 @@
-import os, time, base64, requests
+import os, time, base64
 
 _TOKEN_CACHE = {"access_token": None, "expires_at": 0}
 
